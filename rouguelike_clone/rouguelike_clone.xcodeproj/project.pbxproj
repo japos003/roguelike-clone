@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EE17547522279A4600312929 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE17547422279A4600312929 /* SDL2_mixer.framework */; };
+		EE7CE0492231FFC900E94FC9 /* IDrawableObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7CE0482231FFC900E94FC9 /* IDrawableObject.cpp */; };
+		EE7CE04D2232024500E94FC9 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE7CE04B2232024500E94FC9 /* Enemy.cpp */; };
 		EEC6336C22259A7600B70F14 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEC6336B22259A7600B70F14 /* main.cpp */; };
 		EEC6337622259BDA00B70F14 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC6337522259BDA00B70F14 /* SDL2.framework */; };
 		EEC6337822259BF600B70F14 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEC6337722259BF600B70F14 /* SDL2_image.framework */; };
@@ -32,6 +34,10 @@
 
 /* Begin PBXFileReference section */
 		EE17547422279A4600312929 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
+		EE7CE0482231FFC900E94FC9 /* IDrawableObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = IDrawableObject.cpp; path = ../headers/IDrawableObject.cpp; sourceTree = "<group>"; };
+		EE7CE04A2232002F00E94FC9 /* IDrawableObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IDrawableObject.hpp; sourceTree = "<group>"; };
+		EE7CE04B2232024500E94FC9 /* Enemy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		EE7CE04C2232024500E94FC9 /* Enemy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Enemy.hpp; sourceTree = "<group>"; };
 		EEC6336822259A7600B70F14 /* rouguelike_clone */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = rouguelike_clone; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEC6336B22259A7600B70F14 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		EEC6337322259AEC00B70F14 /* Frameworks */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Frameworks; path = ../../../../../System/Library/Frameworks; sourceTree = "<group>"; };
@@ -99,8 +105,10 @@
 		EEC6337922259C3500B70F14 /* headers */ = {
 			isa = PBXGroup;
 			children = (
+				EE7CE04A2232002F00E94FC9 /* IDrawableObject.hpp */,
 				EEC6337C22259C7300B70F14 /* Player.hpp */,
 				EEC6338122262F5100B70F14 /* Exception.hpp */,
+				EE7CE04C2232024500E94FC9 /* Enemy.hpp */,
 			);
 			path = headers;
 			sourceTree = "<group>";
@@ -108,6 +116,8 @@
 		EEC6337A22259C4200B70F14 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				EE7CE0482231FFC900E94FC9 /* IDrawableObject.cpp */,
+				EE7CE04B2232024500E94FC9 /* Enemy.cpp */,
 				EEC6336B22259A7600B70F14 /* main.cpp */,
 				EEC6338022262F5100B70F14 /* Exception.cpp */,
 				EEC6337B22259C7300B70F14 /* Player.cpp */,
@@ -173,6 +183,8 @@
 			files = (
 				EEC6337D22259C7300B70F14 /* Player.cpp in Sources */,
 				EEC6338222262F5100B70F14 /* Exception.cpp in Sources */,
+				EE7CE04D2232024500E94FC9 /* Enemy.cpp in Sources */,
+				EE7CE0492231FFC900E94FC9 /* IDrawableObject.cpp in Sources */,
 				EEC6336C22259A7600B70F14 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -21,32 +21,23 @@
 
 namespace Player{
     PlayableObject::PlayableObject(int x, int y, std::string image_src, SDL_Renderer *renderer) :
-        PlayableObject(x, y, image_src, renderer, 50, 50) {}
+        DrawableObject(x, y, image_src, renderer, 50, 50) {
+            _movingSFX = nullptr;
+            _harmedSFX = nullptr;
+            _attackingSFX = nullptr;
+            _collectingSFX = nullptr;
+        };
     
     PlayableObject::PlayableObject(int x, int y, std::string image_src, SDL_Renderer *renderer,
-                                   int width, int height){
-        _x = x;
-        _y = y;
-        _rect = SDL_Rect{x, y, width, height};
-        SDL_Surface* surface = IMG_Load(image_src.c_str());
-#ifdef DEBUG
-        char cCurrentPath[FILENAME_MAX];
-        getcwd(cCurrentPath, sizeof(cCurrentPath));
-        std::cout << "Current directory: " << cCurrentPath << std::endl;
-#endif
-        if(surface == NULL){
-            auto errorMessage = SDL_GetError();
-#ifdef DEBUG
-            std::cout << "Error message: " << errorMessage << std::endl;
-#endif
-            throw GameDetails::GameException(errorMessage);
-        }
-        _texture = SDL_CreateTextureFromSurface(renderer, surface);
-        SDL_FreeSurface(surface);
-    }
+                                   int width, int height) :
+        DrawableObject(x, y, image_src, renderer, width, height){
+            _movingSFX = nullptr;
+            _harmedSFX = nullptr;
+            _attackingSFX = nullptr;
+            _collectingSFX = nullptr;
+        };
     
     PlayableObject::~PlayableObject(){
-        SDL_DestroyTexture(_texture);
         FreeSFX();
     }
     
@@ -59,7 +50,7 @@ namespace Player{
     
     void PlayableObject::Update(SDL_Renderer *renderer){
         SDL_RenderCopy(renderer, _texture, NULL, &_rect);
-        SDL_RenderPresent(renderer);
+        //SDL_RenderPresent(renderer);
 #ifdef DEBUG
         auto errorMessage = SDL_GetError();
         if(strlen(errorMessage) > 0){

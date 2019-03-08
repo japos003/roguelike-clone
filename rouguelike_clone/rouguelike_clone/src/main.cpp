@@ -11,6 +11,7 @@
 #include <SDL2_Mixer/SDL_mixer.h>
 
 #include "../headers/Player.hpp"
+#include "../headers/Enemy.hpp"
 
 void handleMovement(SDL_Event event, Player::PlayableObject *playableObject){
     if(event.key.keysym.scancode == SDL_SCANCODE_LEFT){
@@ -32,25 +33,34 @@ int main(int argc, char** args)
     SDL_Init(SDL_INIT_EVERYTHING);
     //For loading PNG images
     IMG_Init(IMG_INIT_PNG);
+    //Mix_Init(MIX)
     if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0){
         std::cout << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << std::endl;
         return -1;
     };
-    
     SDL_Window* window = SDL_CreateWindow("Getting Started", SDL_WINDOWPOS_UNDEFINED,
                                           SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
-    Mix_Music *music = Mix_LoadMUS("resources/music/passion_pit_music_test.wav");
-    if(music == NULL){
-#ifdef DEBUG
-        std::cout << "Error: " << SDL_GetError() << std::endl;
-#endif
-    }
+//    Mix_Music *music = NULL;
+//
+//    try{
+//        music = Mix_LoadMUS("resources/music/passion_pit_music_test.wav");
+//    }catch(std::exception error){
+//        std::cout << "Error: " << error.what() << std::endl;
+//        return -1;
+//    }
+//
+//    if(music == NULL){
+//#ifdef DEBUG
+//        std::cout << "Error: " << SDL_GetError() << std::endl;
+//#endif
+//    }
     SDL_Event input;
     bool quit = false;
 
     Player::PlayableObject *player = new Player::PlayableObject(0, 300, "resources/img/awesome_face.png", renderer);
-    Mix_PlayMusic(music, -1);
+    Enemy::Enemy *enemy = new Enemy::Enemy(100, 300, "resources/img/awesome_face.png", renderer);
+//    Mix_PlayMusic(music, -1);
     
     while (!quit)
     {
@@ -66,11 +76,13 @@ int main(int argc, char** args)
         SDL_RenderClear(renderer);
 
         player->Update(renderer);
-
-        //SDL_RenderPresent(renderer);
+        enemy->Update(renderer);
+        SDL_RenderPresent(renderer);
+        
     }
     delete player;
-    Mix_FreeMusic(music);
+    delete enemy;
+//    Mix_FreeMusic(music);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
 

@@ -14,6 +14,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include <SDL2_mixer/SDL_mixer.h>
+#include "IDrawableObject.hpp"
 
 namespace Player{
     enum GameEventStatus{
@@ -24,7 +25,7 @@ namespace Player{
         COLLECTING
     };
     
-    class PlayableObject{
+    class PlayableObject : DrawableObject{
     public:
         PlayableObject(int x, int y, std::string image_src, SDL_Renderer *renderer);
         PlayableObject(int x, int y, std::string image_src, SDL_Renderer *renderer, int width, int height);
@@ -33,13 +34,6 @@ namespace Player{
         void Move(int x, int y);
         void Update(SDL_Renderer* renderer);
     private:
-        int _x;
-        int _y;
-        int _width;
-        int _height;
-        SDL_Rect _rect;
-        SDL_Texture* _texture;
-        
         /* Sound Effects */
         Mix_Chunk* _attackingSFX;
         Mix_Chunk* _movingSFX;
